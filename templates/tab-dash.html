@@ -1,0 +1,29 @@
+<ion-view title="Login">
+    <ion-content padding="true" class="has-header">
+        <form enctype='application/x-www-form-urlencoded'>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label" style="color:red">Username</span>
+                    <input type="text" placeholder="" value="danang" ng-model="inputs.username" name="inputs.username"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="" name="inputs.password" ng-model="inputs.password" value="danangwifi">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 20px;"></div>
+            <button class="button button-stable button-block" ng-click="doLogin()">Log in</button>
+            <a href="#/signup" class="button button-positive button-clear button-block">Or create an account</a>
+        </form>
+        <ion-list>
+            <ion-item>Item 1</ion-item>
+            <ion-item>Item 2</ion-item>
+            <ion-item>Item 3</ion-item>
+        </ion-list>
+        <div class="button-bar">
+            <button class="button button-stable button-block">Tab 1</button>
+            <button class="button button-stable button-block">2</button>
+            <button class="button button-stable button-block">3</button>
+        </div>
+    </ion-content>
+</ion-view>
