@@ -1,21 +1,20 @@
+<style>
+.word {font-weight:bold}
+</style>
 <ion-view title='Collection' ng-controller="CollectionCtrl">
 	<ion-content>
 		<ion-list>
-			<ion-item ng-click="toggleAnswer(0)">
-				<div ng-show="item[0].show">Hello</div>
-				<div ng-hide="item[0].show">
-				<p>Xin chao</p>
+			<ion-item ng-click="toggleAnswer(item)" ng-repeat="item in items" class='item-icon-right'>
+				<div ng-show="item.show">
+					<span class='word'>{{ item.word }}</span> /{{ item.phonetic }}/
+					
 				</div>
+				<div ng-hide="item.show">
+				<p>{{ item.translate }}</p>
+				</div>
+				<i class="icon ion-volume-medium"></i>
 			</ion-item>
-			<ion-item>
-			2
-			</ion-item>
-			<ion-item>
-			3
-			</ion-item>
-			<ion-item>
-			4
-			</ion-item>
+			
 		</ion-list>
 	</ion-content>
 </ion-view>

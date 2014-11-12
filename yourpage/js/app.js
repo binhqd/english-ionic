@@ -47,7 +47,33 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-
+    .state('yourpage.test', {
+      url: '/test',
+      views: {
+        'appContent': {
+          templateUrl: 'templates/test.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+	.state('yourpage.test-sound', {
+      url: '/testsound',
+      views: {
+        'appContent': {
+          templateUrl: 'templates/testsound.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+   	.state('yourpage.result', {
+      url: '/result',
+      views: {
+        'appContent': {
+          templateUrl: 'templates/result.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.
   otherwise('/yourpage/dashboard');
