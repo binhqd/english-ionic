@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       abstract: true,
       templateUrl: "templates/yourpage.html"
     })
-
+	
     // Each tab has its own nav history stack:
 
     .state('yourpage.dashboard', {
@@ -73,10 +73,34 @@ angular.module('starter', ['ionic', 'starter.controllers'])
           controller: 'CollectionCtrl'
         }
       }
+    });
+ 	
+ 	$stateProvider
+  	.state('collection', {
+      url: "/collection",
+      //abstract: true,
+      templateUrl: "templates/collection.html"
+    })
+   	.state('collection.list', {
+      url: '/list',
+      views: {
+        'appContent': {
+          templateUrl: 'templates/collections.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+    .state('collection.detail', {
+      url: '/detail/:collectionId',
+      views: {
+        'appContent': {
+          templateUrl: 'templates/collection-detail.html',
+          controller: 'CollectionDetailCtrl'
+        }
+      }
     })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.
   otherwise('/yourpage/dashboard');
 
 });
-
