@@ -3,7 +3,21 @@
 </style>
 <ion-view title='Collection' ng-controller="CollectionCtrl">
 	<ion-content>
-		<ion-list>
+		<ion-list show-delete="isDeletingItems"
+                show-reorder="isReorderingItems"
+                on-refresh-holding="refreshHolding()"
+                on-refresh-opening="refreshOpening(ratio)"
+                on-refresh="refreshItems()"
+                on-reorder="onReorder(el, start, end)"
+                refresh-complete="refreshComplete"
+                on-delete="deleteListItem(item, index)"
+                delete-icon="ion-minus-circled"
+                reorder-icon="ion-navicon"
+                animation="my-repeat-animation"
+                can-delete="true"
+                can-reorder="true"
+                can-swipe="true"
+                option-buttons="optionButtons1">
 			<ion-item ng-href="#/collection/detail/{{collection.id}}" ng-repeat="collection in collections" class='item-icon-right'>
 				<div>
 					<span class='word'>{{ collection.name }}</span> ({{ collection.words }})

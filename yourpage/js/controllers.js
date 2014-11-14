@@ -41,6 +41,29 @@ angular.module('starter.controllers', [])
 	$scope.test = function() {
 		$state.go("/yourpage/test"); 
 	}
+	
+	$scope.optionButtons1 = [
+          {
+            text: 'Edit',
+            onTap: function(item, button) { alert(button.text + ' Button: ' + item.text) }
+          },
+          {
+            text: 'Share',
+            type: 'button-balanced',
+            onTap: function(item, button) { alert(button.text + ' Button: ' + item.text) }
+          }
+        ];
+
+        $scope.optionButtons2 = [
+          {
+            text: 'Cancel',
+            onTap: function() { alert('CANCEL!') }
+          },
+          {
+            text: 'Submit',
+            onTap: function() { alert('SUBMIT!') }
+          }
+        ];
 })
 .controller('CollectionDetailCtrl', function($scope, $stateParams) {
 	$scope.collection = {
