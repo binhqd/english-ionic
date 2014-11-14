@@ -1,7 +1,4 @@
-<style>
-.word {font-weight:bold}
-</style>
-<ion-view title='Collection' ng-controller="CollectionCtrl">
+<ion-view title='Collection'>
 	<ion-content>
 		<ion-list show-delete="isDeletingItems"
                 show-reorder="isReorderingItems"
@@ -18,7 +15,7 @@
                 can-reorder="true"
                 can-swipe="true"
                 option-buttons="optionButtons1">
-			<ion-item ng-href="#/collection/detail/{{collection.id}}" ng-repeat="collection in collections" class='item-icon-right'>
+			<ion-item ng-click="showCollectionDetail(collection.id)" ng-repeat="collection in collections" class='item-icon-right'>
 				<div>
 					<span class='word'>{{ collection.name }}</span> ({{ collection.words }})
 				</div>

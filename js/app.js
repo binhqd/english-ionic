@@ -30,55 +30,85 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
     // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
+    .state('login', {
+      url: "/login",
+      //abstract: true,
+      
+      templateUrl: "templates/login.html"
     })
-
+    // setup an abstract state for the tabs directive
+    .state('yourpage', {
+      url: "/yourpage",
+      abstract: true,
+      templateUrl: "yourpage/templates/yourpage.html"
+    })
+	
     // Each tab has its own nav history stack:
 
-    .state('tab.dash', {
-      url: '/dash',
+    .state('yourpage.dashboard', {
+      url: '/dashboard',
       views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/dashboard.html',
+          controller: 'YourPageCtrl'
         }
       }
     })
-
-    .state('tab.friends', {
-      url: '/friends',
+    	
+    // Collection
+    .state('collection', {
+      url: "/collection",
+      abstract: true,
+      templateUrl: 'yourpage/templates/collection.html'
+    })
+   	.state('collection.list', {
+      url: '/list',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/collections.html',
+          controller: 'CollectionCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('collection.detail', {
+      url: '/detail/:collectionId',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/collection-detail.html',
+          controller: 'CollectionDetailCtrl'
         }
       }
     })
-
-    .state('tab.account', {
-      url: '/account',
+    .state('collection.test', {
+      url: '/test',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/test.html',
+          controller: 'CollectionCtrl'
         }
       }
-    });
-
+    })
+	.state('collection.test-sound', {
+      url: '/testsound',
+      views: {
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/testsound.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+   	.state('collection.result', {
+      url: '/result',
+      views: {
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/result.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+  
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/login');
 
 });
 
