@@ -79,6 +79,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('collection.word-detail', {
+      url: '/word-detail/:wordId',
+      views: {
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/word-detail.html',
+          controller: 'WordDetailCtrl'
+        }
+      }
+    })
+    .state('collection.guessing', {
+      url: '/guessing',
+      views: {
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/guessing.html',
+          controller: 'GuessingCtrl'
+        }
+      }
+    })
     .state('collection.test', {
       url: '/test',
       views: {

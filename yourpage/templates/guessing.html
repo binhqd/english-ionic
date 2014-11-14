@@ -1,13 +1,16 @@
-<ion-view title='Collection' ng-controller="CollectionDetailCtrl">
+<ion-view title='Guess your words'>
 	<ion-content>
 		<div class='collection-title'>
 			<span>{{ collection.name }}</span>
 		</div>
 		<ion-list>
-			<ion-item ng-click="showWordDetail(item)" ng-repeat="item in collection.items" class='item-icon-right'>
-				<div>
+			<ion-item ng-click="toggleAnswer(item)" ng-repeat="item in collection.items" class='item-icon-right'>
+				<div ng-show="item.show">
 					<span class='word'>{{ item.word }}</span> {{ item.phonetic }}
-					<p>{{ item.translate }}</p>
+					
+				</div>
+				<div ng-hide="item.show">
+				<p>{{ item.translate }}</p>
 				</div>
 				<i class="icon ion-volume-medium"></i>
 			</ion-item>

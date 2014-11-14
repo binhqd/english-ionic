@@ -1,6 +1,8 @@
 /* Empty. Add your own CSS if you like */
 .word {font-weight:bold}
 .collection-title {font-weight: bold; font-size:25px;padding:20px 0px;text-align:center;}
+.word-title {font-weight: bold; font-size:25px;padding:20px 0px;}
+.word-head {border-bottom:1px solid #999;padding:15px 0px;margin-bottom:10px}
 .answer input {text-align:center;text-transform:uppercase;font-size:16px;width:33px;height:33px;margin:5px;	}
 .character {width:10%;}
 .meaning {font-size:20px;font-weight:bold;}
