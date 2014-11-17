@@ -1,0 +1,13 @@
+<span class="meaning">{{ word.vietnamese }}</span>
+<div class="row answer center" >
+	<div ng-repeat="c in lines[0]">
+		<input id="input-{{$index}}" maxlength="1"
+		ng-blur="blur($index)" 
+		ng-focus="selectCharacter($event, $index)" 
+		ng-class="characterClass[$index]" 
+		ng-keypress="keypress($event, $index)" 
+		ng-keydown="keydown($event, $index)"
+		ng-model="chars[$index]"
+		/>
+	</div>
+</div>

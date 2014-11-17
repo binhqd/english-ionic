@@ -1,23 +1,14 @@
-<ion-view title='Collection'>
+<ion-view title='Test'>
 	<ion-content class='padding'>
-		<span class='meaning'>{{ currentTestItem.translate }}</span>
-		<div class="row answer center">
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		</div>
+		<test word="word"></test>
+		
 		<div class=" answer center">
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
-		  <div class=""><input maxlength='1'/></div>
+		  <div class=""></div>
+		  <div class=""></div>
+		  <div class=""></div>
 		</div>
 		<div class='center'>
-		<button class="button button-balanced center">
+		<button class="button button-balanced center" ng-click="changeWord()">
 		  Answer
 		</button>
 		</center>

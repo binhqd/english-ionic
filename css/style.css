@@ -3,7 +3,11 @@
 .collection-title {font-weight: bold; font-size:25px;padding:20px 0px;text-align:center;}
 .word-title {font-weight: bold; font-size:25px;padding:20px 0px;}
 .word-head {border-bottom:1px solid #999;padding:15px 0px;margin-bottom:10px}
-.answer input {text-align:center;text-transform:uppercase;font-size:16px;width:33px;height:33px;margin:5px;	}
+.answer input {text-align:center;text-transform:uppercase;font-size:16px;width:33px;height:33px;}
+.answer div {margin:5px;}
+.character-actived  {border:1px solid #ff0000;}
+.character-inactive {border:1px solid #999;}
+
 .character {width:10%;}
 .meaning {font-size:20px;font-weight:bold;}
 .center{

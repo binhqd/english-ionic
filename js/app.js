@@ -102,7 +102,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'collectionContent': {
           templateUrl: 'yourpage/templates/test.html',
-          controller: 'CollectionCtrl'
+          controller: 'TestCollectionCtrl'
         }
       }
     })

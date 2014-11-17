@@ -1,0 +1,25 @@
+<ion-view title='Test'>
+	<ion-content class='padding'>
+		<span class='meaning'>{{ currentTestItem.translate }}</span>
+		<div class="row answer center">
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 0)" ng-model="answer[0]" id='input-0'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 1)" ng-model="answer[1]" id='input-1'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 2)" ng-model="answer[2]" id='input-2'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 3)" ng-model="answer[3]" id='input-3'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 4)" ng-model="answer[4]" id='input-4'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 5)" ng-model="answer[5]" id='input-5'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 6)" ng-model="answer[6]" id='input-6'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 7)" ng-model="answer[7]" id='input-7'/></div>
+		</div>
+		<div class=" answer center">
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 8)" ng-model="answer[8]" id='input-8'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 9)" ng-model="answer[9]" id='input-9'/></div>
+		  <div class=""><input maxlength='1' ng-keypress="setCharacter($event, 10)" ng-model="answer[10]" id='input-10'/></div>
+		</div>
+		<div class='center'>
+		<button class="button button-balanced center">
+		  Answer
+		</button>
+		</center>
+	</ion-content>
+</ion-view>
