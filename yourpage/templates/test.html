@@ -1,16 +1,12 @@
 <ion-view title='Test'>
 	<ion-content class='padding'>
-		<test word="word"></test>
-		
+		<test words="words"></test>
+		<div ng-repeat="c in testword">{{c}}</div>
 		<div class=" answer center">
 		  <div class=""></div>
 		  <div class=""></div>
 		  <div class=""></div>
 		</div>
-		<div class='center'>
-		<button class="button button-balanced center" ng-click="changeWord()">
-		  Answer
-		</button>
-		</center>
+		
 	</ion-content>
 </ion-view>

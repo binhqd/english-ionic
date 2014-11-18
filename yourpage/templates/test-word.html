@@ -11,3 +11,20 @@
 		/>
 	</div>
 </div>
+<div class='center'>
+	<button class="button button-balanced center" ng-click="answer()">
+	  Trả lời
+	</button>
+</div>
+<div ng-switch="answerState">
+	<span ng-switch-when='0' class="my-switch-animation">
+		Help
+	</span>
+	<span ng-switch-when='1' class="my-switch-animation">
+		Ban da tra loi dung
+	</span>
+	<span ng-switch-when='2' class="my-switch-animation">
+		Ban tra loi sai
+	</span>
+	
+</div>

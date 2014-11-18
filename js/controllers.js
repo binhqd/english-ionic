@@ -4,24 +4,36 @@ angular.module('starter.controllers', [])
         restrict: 'E',
         templateUrl: '/yourpage/templates/test-word.html',
         scope: {
-            word: "="
+            words: "="
         },
-        controller: function ($scope) {
+        controller: function ($scope, $timeout) {
+			$scope.wrongAnswer = false;
+			
+			var selectedIndex = 0;
+			$scope.word = $scope.words[selectedIndex];
+			
 			var characterPerLine = 8;
-			$scope.lines = [];
-			$scope.characterClass = [];
 			
-			$scope.chars = [];
-			for (var i = 0; i < $scope.word.word.length; i++) {
-				var line = Math.floor(i / characterPerLine);
-				if (typeof $scope.lines[line] == "undefined") $scope.lines[line] = [];
+			$scope.$watch('word', function() {
+				$scope.lines = [];
+				$scope.characterClass = [];
+				$scope.chars = [];
 				
-				$scope.lines[line][i] = i;
-				$scope.characterClass[i] = 'character-inactive';
+				for (var i = 0; i < $scope.word.word.length; i++) {
+					var line = Math.floor(i / characterPerLine);
+					if (typeof $scope.lines[line] == "undefined") $scope.lines[line] = [];
+					
+					$scope.lines[line][i] = i;
+					$scope.characterClass[i] = 'character-inactive';
+					
+					$scope.chars[i] = ' ';
+				}
 				
-				$scope.chars[i] = ' ';
-			}
-			
+				$timeout(function() {
+					document.getElementById('input-0').focus();
+				}, 100);
+			});
+		   
 			$scope.keydown = function($event, $index) {
 				var code = $event.keyCode;
 				if (code == 17) return;
@@ -38,35 +50,31 @@ angular.module('starter.controllers', [])
 					var elem = document.getElementById('input-' + prevIndex);
 					if (typeof elem != "undefined" && elem != null) elem.focus();
 				} else if (code == 13) {
-					var text = '';
-					for (var i = 0; i < $scope.chars.length; i++) {
-						text += $scope.chars[i];
-					}
-
-					text = text.trim();
-					console.log(text);
-					// Nếu trả lời đúng
-					if (text.toLowerCase() == $scope.word.word.toLowerCase()) {
-						//alert('Chúc mừng, bạn đã trả lời đúng.');
-						
-						//$scope.testIndex++;
-						
-						$scope.word = {
-							show : true,
-							id : '5226f76bd608476f8ab31a40c0a801be',
-							phonetic : "/'iriteit/",
-							word : "irritate",
-							meaning : "to excite to impatience or anger; annoy.",
-							vietnamese : "làm phát cáu, chọc tức",
-							example : "Aspirin may irritate  the stomach and alcohol can amplify the toxic effects of  ..."
-						};
-						//$scope.$apply();
-					} else {
-						alert('wrong');
-					}
+					$scope.answer();
 					
 				} else {
 					$scope.chars[$index] = '';
+				}
+			}
+			
+			$scope.answer = function() {
+				var text = '';
+				for (var i = 0; i < $scope.chars.length; i++) {
+					text += $scope.chars[i];
+				}
+
+				text = text.trim();
+				console.log(text);
+				// Nếu trả lời đúng
+				if (text.toLowerCase() == $scope.word.word.toLowerCase()) {
+					//alert('Chúc mừng, bạn đã trả lời đúng.');
+					
+					selectedIndex++;
+					$scope.word = $scope.words[selectedIndex];
+					$scope.answerState = 1;
+				} else {
+					console.log('wrong');
+					$scope.answerState = 2;
 				}
 			}
 			
@@ -273,15 +281,8 @@ angular.module('starter.controllers', [])
 		$scope.words[$scope.words.length] = word;
 	});
 	
-	$scope.word = $scope.words[2];
-	
-	$scope.changeWord = function() {
-		$scope.word = $scope.words[6];
-	}
 	// Perform actions on document ready
-	angular.element(document).ready(function () {
-		document.getElementById('input-0').focus();
-    });
+	
 })
 .controller('CollectionDetailCtrl', function($scope, $stateParams, $rootScope, $state) {
 	$rootScope.showContext = true;
