@@ -1,10 +1,10 @@
-<ion-view title='Collection' ng-controller="CollectionDetailCtrl">
+<ion-view title='Collection'>
 	<ion-content>
 		<div class='collection-title'>
-			<span>{{ collection.name }}</span>
+			<span>{{ collection.currentCollection.name }}</span>
 		</div>
 		<ion-list>
-			<ion-item ng-click="showWordDetail(item)" ng-repeat="item in collection.items" class='item-icon-right'>
+			<ion-item ng-click="showWordDetail(item)" ng-repeat="item in collection.currentCollection.items" class='item-icon-right'>
 				<div>
 					<span class='word'>{{ item.word }}</span> {{ item.phonetic }}
 					<p>{{ item.meaning }}</p>

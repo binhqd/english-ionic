@@ -66,7 +66,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'collectionContent': {
           templateUrl: 'yourpage/templates/collections.html',
-          controller: 'CollectionCtrl'
+          controller: 'CollectionListCtrl'
         }
       }
     })
@@ -103,6 +103,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'collectionContent': {
           templateUrl: 'yourpage/templates/test.html',
           controller: 'TestCollectionCtrl'
+        }
+      }
+    })
+	.state('collection.test-finish', {
+      url: '/test/finish',
+      views: {
+        'collectionContent': {
+          templateUrl: 'yourpage/templates/test-finish.html',
+          //controller: 'TestFinishCtrl'
         }
       }
     })

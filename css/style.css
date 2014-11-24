@@ -10,6 +10,25 @@
 
 .character {width:10%;}
 .meaning {font-size:20px;font-weight:bold;}
+.answerState span.right-answer {font-size: 18px; color: #0F7D23}
+.answerState .wrong-answer  .message-alert{font-size: 18px; color: #ff0000}
+.answer input.right-answer {background-color: #0F7D23;color:#fff;}
+.wrong-answer .item-text-wrap {background-color: #F7E6D7}
+.word-tip {font-size: 20px; font-weight: bold;}
+.listen-icon {
+position: relative;
+z-index: 0;
+display: inline-block;
+padding: 0px;
+width: 42px;
+border-radius: 4px;
+list-style: none;
+text-align: center;
+font-weight: normal;
+font-size: 50px;
+cursor: pointer;
+}
+
 .center{
   display: -webkit-box;
     display: -moz-box;

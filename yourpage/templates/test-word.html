@@ -1,30 +1,58 @@
 <span class="meaning">{{ word.vietnamese }}</span>
-<div class="row answer center" >
-	<div ng-repeat="c in lines[0]">
-		<input id="input-{{$index}}" maxlength="1"
-		ng-blur="blur($index)" 
-		ng-focus="selectCharacter($event, $index)" 
-		ng-class="characterClass[$index]" 
-		ng-keypress="keypress($event, $index)" 
-		ng-keydown="keydown($event, $index)"
-		ng-model="chars[$index]"
+<div class="row answer center" ng-repeat="line in lines">
+	<div ng-repeat="c in line track by $index">
+		<input id="input-{{c}}" maxlength="1"
+		ng-blur="blur(c)" 
+		ng-focus="selectCharacter($event, c)" 
+		ng-class="{'character-actived' : characterClass[c], 'character-inactive' : !characterClass[c], 'right-answer' : answerState == 1, bold: answerState == 1}" 
+		ng-keypress="keypress($event, c)" 
+		ng-disabled="answerState==1 || answerState==2"
+		ng-keydown="keydown($event, c)"
+		ng-model="chars[c]"
 		/>
 	</div>
 </div>
 <div class='center'>
-	<button class="button button-balanced center" ng-click="answer()">
+	<button ng-disabled="answerState==1 || answerState==2" class="button button-balanced center" ng-click="answer()">
 	  Trả lời
 	</button>
 </div>
-<div ng-switch="answerState">
-	<span ng-switch-when='0' class="my-switch-animation">
+<div class="spacer" style="height: 15px;"></div>
+<div ng-switch="answerState" class='answerState'>
+	<div ng-switch-when='0' class="my-switch-animation">
 		Help
-	</span>
-	<span ng-switch-when='1' class="my-switch-animation">
-		Ban da tra loi dung
-	</span>
-	<span ng-switch-when='2' class="my-switch-animation">
-		Ban tra loi sai
-	</span>
-	
+	</div>
+	<div ng-switch-when='1' class="my-switch-animation">
+		<span class="center right-answer">Xin chúc mừng! Bạn đã trả lời đúng</span>
+		
+		<div class="card">
+			<div class="item item-text-wrap">
+				<div class='center'>
+					<i class="icon ion-volume-medium listen-icon"></i>
+				</div>
+				<div class=''>
+					{{ word.phonetic }} 
+				</div>
+				<div>
+					<p>{{ word.meaning }}</p>
+					<p>Eg: {{ word.example }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-switch-when='2' class="my-switch-animation wrong-answer">
+		<span class="center message-alert">Bạn đã trả lời sai.</span>
+		<div class="card">
+			<div class="item item-text-wrap">
+				<p>Đáp án: <span class='word-tip'>{{ word.word }}</span></p>
+				<p>{{ word.phonetic }}</p>
+				<p>{{ word.meaning }}</p>
+				<p>Eg: {{ word.example }}</p>
+			</div>
+		</div>
+		
+	</div>
+	<div class='center' ng-show="answerState==1 || answerState==2">
+		<button class="button button-positive" ng-click='nextTest()'>Tiếp tục</button>
+	</div>
 </div>

@@ -1,39 +1,14 @@
-<script id="popover.html" type="text/ng-template">
-<ion-popover-view>
-    <ion-content>
-      <div class="list">
-        <a class="item item-icon-left" ng-click="doTest(collection)">
-        	<i class="icon ion-flash"></i>
-        	Test
-        </a>
-        <a class="item item-icon-left ">
-        	<i class="icon ion-share"></i>
-          Share
-        </a>
-        <a class="item item-icon-left ">
-        	<i class="icon ion-ios7-paperplane"></i>
-          Publish
-        </a>
-        <a class="item item-icon-left" ng-click="guess(collection)">
-       		<i class="icon ion-ios7-information"></i>
-          	Guessing
-        </a>
-      </div>
-    </ion-content>
-  </ion-popover-view>
-</script>
-
 <ion-side-menus ng-controller="CollectionCtrl">
     <ion-side-menu-content>
       <ion-nav-bar class="bar-dark">
         
       </ion-nav-bar>
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()">
+        <button class="button button-icon button-clear ion-navicon" ng-click="sidemenu.toggleLeft()">
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button ng-show="showContext" class="button button-icon ion-more" ng-click="openPopover($event)">
+        <button ng-show="popover.hasContext()" class="button button-icon ion-more" ng-click="popover.open($event)">
         </button>
       </ion-nav-buttons>
       <ion-nav-view name="collectionContent"></ion-nav-view>
@@ -48,7 +23,7 @@
 
   <a class="item item-icon-left" ng-click="yourCollections()">
     <i class="icon ion-email"></i>
-    Your collections
+    Bộ từ của bạn
   </a>
 
   <a class="item item-icon-left item-icon-right" href="#">
@@ -67,7 +42,7 @@
   
   <a class="item item-icon-left" href="/#/login">
     <i class="icon ion-person-stalker"></i>
-    Logout
+    Đăng xuất
     <span class="badge badge-assertive">0</span>
   </a>
 

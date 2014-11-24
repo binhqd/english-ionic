@@ -15,9 +15,9 @@
                 can-reorder="true"
                 can-swipe="true"
                 option-buttons="optionButtons1">
-			<ion-item ng-click="showCollectionDetail(collection.id)" ng-repeat="collection in collections" class='item-icon-right'>
+			<ion-item ng-click="showCollectionDetail(collection.id)" ng-repeat="collection in collection.list" class='item-icon-right'>
 				<div>
-					<span class='word'>{{ collection.name }}</span> ({{ collection.words }})
+					<span class='word'>{{ collection.title }}</span> ({{ collection.words }})
 				</div>
 			</ion-item>
 		</ion-list>
