@@ -187,17 +187,28 @@ angular.module('starter.controllers', [])
 	}
 	
 })
-.controller('WordDetailCtrl', function($scope, $stateParams) {
+.controller('WordDetailCtrl', function($scope, $stateParams, $state) {
 	var wordId = $stateParams.wordId;
 	
-	$scope.word = $scope.collection.currentCollection.indexedItems[wordId];
+	if (typeof $scope.collection.currentCollection == "undefined") {
+		$state.go('collection.list');
+	} else {
+		$scope.word = $scope.collection.currentCollection.indexedItems[wordId];
+	}
 })
 .controller('CollectionCtrl', function($scope, $ionicPopover, $state, $ionicSideMenuDelegate) {
 	$scope.navButtons = {};
 	$scope.popover = {};
+	$scope.collections = {};
+	
 	$scope.navButtons.showPopoverButton = false;
 	
 	$scope.collection = {};
+	$scope.collection.empty = {
+		id : null,
+		title : null,
+		items : []
+	};
 	$scope.collection.refreshCollections = true;
 	
 	$scope.sidemenu = {};
@@ -275,6 +286,11 @@ angular.module('starter.controllers', [])
   	});
 	
 	*/
+	if (typeof $scope.collection.currentCollection == "undefined") {
+		$state.go('collection.list');
+	} else {
+		$scope.word = $scope.collection.currentCollection.indexedItems[wordId];
+	}
 	
 	var wordId = $stateParams.wordId;
 	
@@ -296,7 +312,7 @@ angular.module('starter.controllers', [])
 		$ionicLoading.show({
 			template: 'loading...'
 		});
-		$http.get('http://api.english.localhost.com/collections').success(function(data) {
+		$http.get(APIUrl + '/collections').success(function(data) {
 			$ionicLoading.hide();
 			if (data.meta.code == 200) {
 				$scope.collection.list = data.data.items;
@@ -305,7 +321,7 @@ angular.module('starter.controllers', [])
 	}
 	
 })
-.controller('CollectionDetailCtrl', function($scope, $stateParams, $state, $ionicPopover) {
+.controller('CollectionDetailCtrl', function($scope, $stateParams, $state, $ionicPopover, $ionicLoading, $http) {
 	$scope.navButtons.showPopoverButton = true;
 	
 	$ionicPopover.fromTemplateUrl('/yourpage/templates/popover/collection-detail.html', {
@@ -318,98 +334,50 @@ angular.module('starter.controllers', [])
 		$scope.popover.context = null;
   	});
 	
-	collectionId = $stateParams.collectionId;
-	if (typeof $scope.collection.currentCollection == "undefined") {
+	$scope.shuffleArray = function() {
+		if ($scope.collection.refreshCollections) {
+			$scope.collection.currentCollection.items = shuffle($scope.collection.currentCollection.items);
+			$scope.collection.refreshCollections = false;
+		}
 		
-		$scope.collection.currentCollection = {
-			id : 1,
-			name : 'Hỏi đường',
-			items : [
-				
-				{
-					show : true,
-					id : '5226f913f6e4427689601a40c0a801be',
-					phonetic : "/'regjuləri/",
-					word : "regularly",
-					meaning : "at regular times or intervals.",
-					vietnamese : "đều đều, đều đặn, thường xuyên",
-					example : "Keep watering them regularly if you want to grow them larger."
-				},
-				
-				{
-					show : true,
-					id : '5226fc55807842f692b81a40c0a801be',
-					phonetic : "/θru:'aut/",
-					word : "throughout",
-					meaning : "in or to every part of; everywhere in",
-					vietnamese : "từ đầu đến cuối, khắp, suốt",
-					example : "They searched throughout the house."
-				},
-				
-				{
-					show : true,
-					id : '5226fd5709504a78b5611a40c0a801be',
-					phonetic : "/ʌn'faundid/",
-					word : "unfounded",
-					meaning : "without foundation; not based on fact, realistic considerations",
-					vietnamese : "không căn cứ, không có sơ sở",
-					example : "the prophet of a religion as yet unfounded."
-				},
-				
-				{
-					show : true,
-					id : '5226fde2d59c43fda4671a40c0a801be',
-					phonetic : "/in'fɔ:mətiv/",
-					word : "informative",
-					meaning : "giving information; instructive",
-					vietnamese : "cung cấp nhiều tin tức, có nhiều tài liệu",
-					example : "Thanks so much for an informative  and educational article."
-				},
-				{
-					show : true,
-					id : '5226fe456a0441f4a1991a40c0a801be',
-					phonetic : "/in'sentiv/",
-					word : "incentive ",
-					meaning : "something that incites or tends to incite to action or greater effort, as a reward offered for increased productivity.",
-					vietnamese : "khuyến khích, khích lệ; thúc đẩy",
-					example : "an additional payment made to employees as a means of increasing production"
-				},
-				{
-					show : true,
-					id : '5226fe8560e8418eaca81a40c0a801be',
-					phonetic : "/,remi'nisnt/",
-					word : "reminiscent",
-					meaning : "awakening memories of something similar",
-					vietnamese : "nhớ lại; làm nhớ lại, gợi lại",
-					example : "His style of writing is reminiscent of Melville's."
-				},
-				
-				{
-					show : true,
-					id : '52780304bb2c493bb7e41a40c0a801be',
-					phonetic : "/ri'gɑ:dlis/",
-					word : "regardless",
-					meaning : "without concern as to advice, warning, hardship",
-					vietnamese : "không kể, không đếm xỉa tới, không chú ý tới; bất chấp",
-					example : "They'll do it regardless of the cost."
-				}
-			]
+		// set each item with a key, create indexes
+		var length = $scope.collection.currentCollection.items.length;
+		$scope.collection.currentCollection.indexedItems = {};
+		
+		for (var i = 0; i < length; i++) {
+			var item = $scope.collection.currentCollection.items[i];
+			$scope.collection.currentCollection.indexedItems[item.id] = item;
 		}
 	}
 	
-	if ($scope.collection.refreshCollections) {
-		$scope.collection.currentCollection.items = shuffle($scope.collection.currentCollection.items);
-		$scope.collection.refreshCollections = false;
+	var collectionId = $stateParams.collectionId;
+	if (typeof $scope.collections[collectionId] == "undefined") {
+		// set empty data
+		$scope.collection.currentCollection = $scope.collection.empty;
+		$ionicLoading.show({
+			template: 'loading...'
+		});
+		$http.get(APIUrl + '/collections/'+collectionId+'?parts={words:{limit:10}}').success(function(data) {
+			$ionicLoading.hide();
+			if (data.meta.code == 200) {
+				// clean up complex structure in data
+				data.data.collections.items = data.data.collections.parts.words.items;
+				//delete data.data.collections.parts.words.items;
+				
+				$scope.collections[collectionId] = data.data.collections;
+				$scope.collection.currentCollection = data.data.collections;
+				
+				$scope.shuffleArray();
+			} else {
+				// TODO: do something if data is not retrieve or internet error
+			}
+		});
+	} else {
+		$scope.collection.currentCollection = $scope.collections[collectionId];
+		$scope.shuffleArray();
 	}
 	
-	// set each item with a key, create indexes
-	var length = $scope.collection.currentCollection.items.length;
-	$scope.collection.currentCollection.indexedItems = {};
 	
-	for (var i = 0; i < length; i++) {
-		var item = $scope.collection.currentCollection.items[i];
-		$scope.collection.currentCollection.indexedItems[item.id] = item;
-	}
 	
 	$scope.showWordDetail = function(item) {
 		$state.go('collection.word-detail', {wordId : item.id});

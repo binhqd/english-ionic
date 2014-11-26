@@ -1,7 +1,7 @@
 <ion-view title='Guess your words'>
 	<ion-content>
 		<div class='collection-title'>
-			<span>{{ collection.currentCollection.name }}</span>
+			<span>{{ collection.currentCollection.title }}</span>
 		</div>
 		<ion-list>
 			<ion-item ng-click="toggleAnswer(item)" ng-repeat="item in collection.currentCollection.items" class='item-icon-right'>
